@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* warm beam — dark theme */
+  --bg: #0f1115;
+  --surface: #1a1d24;
+  --surface-2: #22262f;
+  --border: #2a2e37;
+  --text: #e8eaed;
+  --text-muted: #9499a3;
+  --text-faint: #6b7079;
+  --accent: #ffb84d;
+  --accent-hover: #ffc76b;
+  --accent-ink: #1a1205;
+  --success: #4ade80;
+  --danger: #f87171;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-feature-settings: "cv11", "ss01";
+    letter-spacing: -0.011em;
+  }
+
+  ::selection {
+    background-color: rgba(255, 184, 77, 0.28);
+    color: var(--text);
+  }
+
+  /* Calm, brand-tinted focus ring */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  /* Custom scrollbars to match the dark surface */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--surface-2) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--surface-2);
+    border-radius: 999px;
+    border: 3px solid var(--bg);
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background-color: #2f343e;
+  }
+}
+
+@layer components {
+  /* Constrained content column used across marketing pages */
+  .container-beam {
+    width: 100%;
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  /* Primary amber button — the beam */
+  .btn-accent {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 500;
+    border-radius: 10px;
+    transition: background-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 8px 24px -12px rgba(255, 184, 77, 0.6);
+  }
+  .btn-accent:hover {
+    background-color: var(--accent-hover);
+  }
+  .btn-accent:active {
+    transform: translateY(1px);
+  }
+
+  /* Ghost / secondary button */
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    color: var(--text);
+    font-weight: 500;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    transition: background-color 0.18s ease, border-color 0.18s ease;
+  }
+  .btn-ghost:hover {
+    background-color: var(--surface);
+    border-color: #353a45;
+  }
+
+  .input-beam {
+    width: 100%;
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .input-beam::placeholder {
+    color: var(--text-faint);
+  }
+  .input-beam:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(255, 184, 77, 0.16);
+  }
+
+  /* Hairline card */
+  .card-beam {
+    background-color: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+
+  /* FAQ accordion (native <details>) */
+  .faq-chevron {
+    transition: transform 0.2s ease;
+  }
+  details[open] .faq-chevron {
+    transform: rotate(180deg);
+  }
+  details > summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  /* Readable long-form styling for legal pages */
+  .legal-prose {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .legal-prose h2 {
+    color: var(--text);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .legal-prose h3 {
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .legal-prose p {
+    margin-bottom: 1rem;
+  }
+  .legal-prose ul {
+    margin: 0.5rem 0 1.25rem;
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+  .legal-prose li {
+    margin-bottom: 0.4rem;
+  }
+  .legal-prose a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .legal-prose a:hover {
+    color: var(--accent-hover);
+  }
+  .legal-prose strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .legal-prose code {
+    background-color: var(--surface-2);
+    border-radius: 4px;
+    padding: 0.1rem 0.35rem;
+    font-size: 0.85em;
+    color: var(--text);
+  }
+}
+
+/* The volumetric god-ray for the hero — pure CSS, GPU-friendly */
+.beam-ray {
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  width: 60vw;
+  height: 130vh;
+  transform-origin: top center;
+  transform: translateX(-50%) rotate(8deg);
+  background: conic-gradient(
+    from 180deg at 50% 0%,
+    transparent 0deg,
+    rgba(255, 184, 77, 0.14) 8deg,
+    rgba(255, 184, 77, 0.05) 18deg,
+    transparent 28deg
+  );
+  filter: blur(36px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.beam-halo {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 184, 77, 0.22) 0%,
+    rgba(255, 184, 77, 0.08) 35%,
+    transparent 70%
+  );
+  filter: blur(40px);
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Subtle dotted grid texture for atmosphere */
+.bg-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
